@@ -1,18 +1,28 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.nilsa.infersharp</id>
-    <name>infersharp</name>
+    <name>InferSharp</name>
     <vendor>nils-a</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.nilsa.infersharp.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.nilsa.infersharp.services.MyProjectService"/>
+        <toolWindow anchor="bottom" id="INFER_SHARP_TOOLWIN"  icon="InferSharpIcons.InferSharpAction"
+                    factoryClass="com.github.nilsa.infersharp.toolWindow.InferSharpWindowFactory" />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.nilsa.infersharp.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    
+    <actions>
+        <action id="InferSharp.Wsl.Check"
+                class="com.github.nilsa.infersharp.wsl.actions.CheckAction"
+                text="Check (WSL)" />
+
+        <!-- tool -->
+        <group id="CakeMainMenu" text="Infer#" popup="true" icon="InferSharpIcons.InferSharpAction">
+            <add-to-group group-id="ToolsMenu" />
+            <reference id="InferSharp.Wsl.Check" />
+        </group>
+    </actions>
 </idea-plugin>
