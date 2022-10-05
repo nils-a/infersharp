@@ -1,0 +1,29 @@
+# Default detekt configuration:
+# https://github.com/detekt/detekt/blob/master/detekt-core/src/main/resources/default-detekt-config.yml
+
+complexity:
+  TooManyFunctions:
+    thresholdInFiles: 50
+    thresholdInClasses: 50
+    thresholdInInterfaces: 50
+    thresholdInObjects: 50
+    thresholdInEnums: 50
+
+empty-blocks:
+  EmptyFunctionBlock:
+    ignoreOverridden: true
+
+formatting:
+  Indentation:
+    continuationIndentSize: 8
+  ParameterListWrapping:
+    indentSize: 4
+
+style:
+  ReturnCount:
+    max: 10
+  LoopWithTooManyJumpStatements:
+    maxJumpCount: 5
+  MaxLineLength:
+    maxLineLength: 120
+    excludes: ["**/test/**", "**/tests/**"] 

@@ -16,13 +16,21 @@
     
     <actions>
         <action id="InferSharp.Wsl.Check"
-                class="com.github.nilsa.infersharp.wsl.actions.CheckAction"
+                class="com.github.nilsa.infersharp.wsl.actions.WslAction$CheckAction"
                 text="Check (WSL)" />
+        <action id="InferSharp.Wsl.Install"
+                class="com.github.nilsa.infersharp.wsl.actions.WslAction$InstallAction"
+                text="Install (WSL)" />
+        <action id="InferSharp.Wsl.Analyze"
+                class="com.github.nilsa.infersharp.wsl.actions.WslAction$AnalyzeAction"
+                text="Analyze (WSL)" />
 
         <!-- tool -->
         <group id="CakeMainMenu" text="Infer#" popup="true" icon="InferSharpIcons.InferSharpAction">
             <add-to-group group-id="ToolsMenu" />
             <reference id="InferSharp.Wsl.Check" />
+            <reference id="InferSharp.Wsl.Install" />
+            <reference id="InferSharp.Wsl.Analyze" />
         </group>
     </actions>
 </idea-plugin>
