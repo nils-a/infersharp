@@ -1,6 +1,6 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.nilsa.infersharp</id>
+    <id>de.nilsa.infersharp</id>
     <name>InferSharp</name>
     <vendor url="https://blog.nils-andresen.de">Nils Andresen</vendor>
 
@@ -8,7 +8,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow anchor="bottom" id="INFER_SHARP_TOOLWIN"  icon="InferSharpIcons.InferSharpAction"
-                    factoryClass="com.github.nilsa.infersharp.toolWindow.InferSharpWindowFactory" />
+                    factoryClass="de.nilsa.infersharp.toolWindow.InferSharpWindowFactory" />
     </extensions>
 
     <applicationListeners>
@@ -16,13 +16,13 @@
     
     <actions>
         <action id="InferSharp.Wsl.Check"
-                class="com.github.nilsa.infersharp.wsl.actions.WslAction$CheckAction"
+                class="de.nilsa.infersharp.wsl.actions.WslAction$CheckAction"
                 text="Check (WSL)" />
         <action id="InferSharp.Wsl.Install"
-                class="com.github.nilsa.infersharp.wsl.actions.WslAction$InstallAction"
+                class="de.nilsa.infersharp.wsl.actions.WslAction$InstallAction"
                 text="Install (WSL)" />
         <action id="InferSharp.Wsl.Analyze"
-                class="com.github.nilsa.infersharp.wsl.actions.WslAction$AnalyzeAction"
+                class="de.nilsa.infersharp.wsl.actions.WslAction$AnalyzeAction"
                 text="Analyze (WSL)" />
 
         <!-- tool -->

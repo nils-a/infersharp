@@ -1,4 +1,4 @@
-package com.github.nilsa.infersharp.wsl.commands
+package de.nilsa.infersharp.wsl.commands
 
 object Constants {
     // TODO: some of this could be settings, right?

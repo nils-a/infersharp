@@ -1,6 +1,6 @@
-package com.github.nilsa.infersharp.wsl.commands
+package de.nilsa.infersharp.wsl.commands
 
-import com.github.nilsa.infersharp.toolWindow.InferSharpWindow
+import de.nilsa.infersharp.toolWindow.InferSharpWindow
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.process.CapturingProcessRunner
 import com.intellij.execution.process.ProcessHandlerFactory
@@ -315,7 +315,7 @@ class WslCommands(private val project: Project) {
         run breaking@{
             actionsInTerminal.forEach { action ->
 
-                // TODO: Results in multiple
+                // TODO: This results in multiple warnings:
                 // ERROR - erm.terminal.ui.JediTermWidget - Should not try to start session again at this point...
 
                 if (indicator.isCanceled) {

@@ -1,23 +1,18 @@
-# infersharp
+# IntelliJ-Infersharp
 
 ![Build](https://github.com/nils-a/infersharp/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-
-## Template ToDo list
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the Plugin ID in the above README badges.
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html).
+[![Version](https://img.shields.io/jetbrains/plugin/v/20093-infersharp.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/20093-infersharp.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 <!-- Plugin description -->
 This IntelliJ Platform Plugin provides static code analysis of your
 project using [Microsoft Infer#](https://github.com/microsoft/infersharp).
 
-Currently, it is based on WSL. This means it is windows-only for now. 
+Currently, it is based on WSL. **_This means it is windows-only for now_**. 
 
 <!-- Plugin description end -->
 
-## Installation
+## Installation of the Plugin
 
 - Using IDE built-in plugin system:
   
@@ -40,6 +35,11 @@ in no particular order:
   (i.e. someone provided a bug report and attached the sarif output of infer#)
 - support in Rider: Right-click on a project file -> the build output folder should be known.
   No need to ask for a folder.
+
+## installation of Infer#
+
+Should be semi-automated, using <kbd>Tools</kbd> > <kbd>Infer#</kbd> > <kbd>Install (WSL)</kbd>
+TODO: Document the manual steps.
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].

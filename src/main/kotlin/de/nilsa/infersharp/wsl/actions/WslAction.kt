@@ -1,7 +1,7 @@
-package com.github.nilsa.infersharp.wsl.actions
+package de.nilsa.infersharp.wsl.actions
 
-import com.github.nilsa.infersharp.wsl.commands.Constants
-import com.github.nilsa.infersharp.wsl.commands.WslCommands
+import de.nilsa.infersharp.wsl.commands.Constants
+import de.nilsa.infersharp.wsl.commands.WslCommands
 import com.intellij.execution.wsl.WSLUtil
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationType

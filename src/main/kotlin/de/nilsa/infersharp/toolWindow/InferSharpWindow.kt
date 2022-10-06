@@ -1,4 +1,4 @@
-package com.github.nilsa.infersharp.toolWindow
+package de.nilsa.infersharp.toolWindow
 
 import com.intellij.openapi.ui.SimpleToolWindowPanel
 import com.intellij.ui.components.JBPanelWithEmptyText
