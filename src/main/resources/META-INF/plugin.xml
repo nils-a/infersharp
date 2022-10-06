@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.github.nilsa.infersharp</id>
     <name>InferSharp</name>
-    <vendor>nils-a</vendor>
+    <vendor url="https://blog.nils-andresen.de">Nils Andresen</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 

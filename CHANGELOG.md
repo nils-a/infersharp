@@ -4,5 +4,5 @@
 
 ## [Unreleased]
 ### Added
-- ? added WSL functions ?
+- Added analyzing using a WSL based Infer# installation
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)

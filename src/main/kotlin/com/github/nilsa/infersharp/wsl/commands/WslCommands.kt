@@ -24,6 +24,7 @@ import com.intellij.terminal.JBTerminalWidget
 import com.intellij.terminal.TerminalExecutionConsole
 import com.intellij.ui.content.Content
 import com.intellij.ui.content.ContentFactory
+import java.util.UUID
 
 
 class WslCommands(private val project: Project) {
@@ -205,8 +206,16 @@ class WslCommands(private val project: Project) {
             )
             return
         }
-        val inWslDir: (WSLCommandLineOptions) -> Unit = { it.remoteWorkingDirectory = wslDir }
+        // do stuff in /tmp - so we're using the linux FS and not the mounted windows FS
+        val tmpDir = "/tmp/${UUID.randomUUID()}"
+        val inTmpDir: (WSLCommandLineOptions) -> Unit = { it.remoteWorkingDirectory = tmpDir }
         run("Analyzing $entryPoint", sequence {
+            yield(
+                DoInTerminal(commandLine("mkdir", "-p", tmpDir).inWsl())
+            )
+            yield(
+                DoInTerminal(commandLine("rm", "-rf", "$wslDir/infer-out").inWsl())
+            )
             yield(
                 DoInTerminal(
                     "Translating...", commandLine(
@@ -216,7 +225,7 @@ class WslCommands(private val project: Project) {
                         "--outcfg", "$wslDir/cfg.json",
                         "--outtenv", "$wslDir/tenv.json",
                         "--extprogress"
-                    ).inWsl(wslCommandOptionModification = inWslDir)
+                    ).inWsl(wslCommandOptionModification = inTmpDir)
                 )
             )
             yield(
@@ -224,7 +233,7 @@ class WslCommands(private val project: Project) {
                     "Capturing...", commandLine(
                         "${Constants.folderName}/infer/lib/infer/infer/bin/infer",
                         "capture"
-                    ).inWsl(wslCommandOptionModification = inWslDir)
+                    ).inWsl(wslCommandOptionModification = inTmpDir)
                 )
             )
             yield(
@@ -240,15 +249,20 @@ class WslCommands(private val project: Project) {
                         "--disable-issue-type", "UNINITIALIZED_VALUE",
                         "--cfg-json", "$wslDir/cfg.json",
                         "--tenv-json", "$wslDir/tenv.json"
-                    ).inWsl(wslCommandOptionModification = inWslDir)
+                    ).inWsl(wslCommandOptionModification = inTmpDir)
                 )
+            )
+            yield(
+                DoInTerminal(commandLine("rm", "-rf", "$wslDir/cfg.json", "$wslDir/tenv.json").inWsl())
+            )
+            yield(
+                DoInTerminal(commandLine("mv", "$tmpDir/infer-out", wslDir).inWsl())
+            )
+            yield(
+                DoInTerminal(commandLine("rm", "-rf", tmpDir).inWsl())
             )
             yield(DoInTerminal("Done."))
         }, indicator)
-
-        // VIsualize using ExternalAnnotator, see
-    // https://github.com/SonarSource/sonarlint-intellij/blob/dd908d205876c1a79981399bcf0c03b8d146544b/src/main/java/org/sonarlint/intellij/editor/SonarExternalAnnotator.java
-
     }
 
     private fun commandLine(
@@ -300,6 +314,10 @@ class WslCommands(private val project: Project) {
         var out: ProcessOutput? = null
         run breaking@{
             actionsInTerminal.forEach { action ->
+
+                // TODO: Results in multiple
+                // ERROR - erm.terminal.ui.JediTermWidget - Should not try to start session again at this point...
+
                 if (indicator.isCanceled) {
                     return@breaking
                 }
